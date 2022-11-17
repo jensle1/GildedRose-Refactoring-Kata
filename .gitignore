@@ -6,3 +6,5 @@ vendor
 .idea
 *.iml
 *.class
+/.gradle/
+/build/
