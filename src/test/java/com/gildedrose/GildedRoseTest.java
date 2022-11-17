@@ -9,6 +9,7 @@ class GildedRoseTest {
     private final String agedBrie = "Aged Brie";
     private final String sulfuras = "Sulfuras, Hand of Ragnaros";
     private final String backstage = "Backstage passes to a TAFKAL80ETC concert";
+    private final String conjured = "Conjured";
 
     @Test
     void normal_item_quality_decreases_sellin_decreases_each_day() {
@@ -258,5 +259,66 @@ class GildedRoseTest {
 
         assertThat(backstageItem.quality).isEqualTo(0);
         assertThat(backstageItem.sellIn).isEqualTo(-2);
+    }
+
+    @Test
+    void conjured_before_sell_date_quality_drops_2x_as_fast() {
+        Item conjuredItem = new Item(conjured, 7, 49);
+        GildedRose gildedRose = new GildedRose(new Item[]{conjuredItem});
+
+        gildedRose.updateItem();
+
+        assertThat(conjuredItem.quality).isEqualTo(47);
+        assertThat(conjuredItem.sellIn).isEqualTo(6);
+    }
+    @Test
+    void conjured_before_sell_date_quality_never_drops_below_0() {
+        Item conjuredItem = new Item(conjured, 7, 0);
+        GildedRose gildedRose = new GildedRose(new Item[]{conjuredItem});
+
+        gildedRose.updateItem();
+
+        assertThat(conjuredItem.quality).isEqualTo(0);
+        assertThat(conjuredItem.sellIn).isEqualTo(6);
+    }
+    @Test
+    void conjured_on_sell_date_quality_drops_4x_as_fast() {
+        Item conjuredItem = new Item(conjured, 0, 49);
+        GildedRose gildedRose = new GildedRose(new Item[]{conjuredItem});
+
+        gildedRose.updateItem();
+
+        assertThat(conjuredItem.quality).isEqualTo(45);
+        assertThat(conjuredItem.sellIn).isEqualTo(-1);
+    }
+    @Test
+    void conjured_on_sell_date_quality_never_drops_below_0() {
+        Item conjuredItem = new Item(conjured, 0, 1);
+        GildedRose gildedRose = new GildedRose(new Item[]{conjuredItem});
+
+        gildedRose.updateItem();
+
+        assertThat(conjuredItem.quality).isEqualTo(0);
+        assertThat(conjuredItem.sellIn).isEqualTo(-1);
+    }
+    @Test
+    void conjured_after_sell_date_quality_drops_4x_as_fast() {
+        Item conjuredItem = new Item(conjured, -1, 49);
+        GildedRose gildedRose = new GildedRose(new Item[]{conjuredItem});
+
+        gildedRose.updateItem();
+
+        assertThat(conjuredItem.quality).isEqualTo(45);
+        assertThat(conjuredItem.sellIn).isEqualTo(-2);
+    }
+    @Test
+    void conjured_after_sell_date_quality_never_drops_below_0() {
+        Item conjuredItem = new Item(conjured, -1, 1);
+        GildedRose gildedRose = new GildedRose(new Item[]{conjuredItem});
+
+        gildedRose.updateItem();
+
+        assertThat(conjuredItem.quality).isEqualTo(0);
+        assertThat(conjuredItem.sellIn).isEqualTo(-2);
     }
 }
