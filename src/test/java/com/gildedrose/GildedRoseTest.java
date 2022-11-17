@@ -17,7 +17,7 @@ class GildedRoseTest {
         Item normalItem = new Item("foo", startingSellin, startingQuality);
         GildedRose app = new GildedRose(new Item[]{normalItem});
 
-        app.updateQuality();
+        app.updateItem();
 
         assertThat(normalItem.sellIn).isEqualTo(startingSellin - 1);
         assertThat(normalItem.quality).isEqualTo(startingQuality - 1);
@@ -29,7 +29,7 @@ class GildedRoseTest {
         Item otherNormalItem = new Item("foo", 10, 10);
         GildedRose app = new GildedRose(new Item[]{normalItem, otherNormalItem});
 
-        app.updateQuality();
+        app.updateItem();
 
         assertThat(normalItem.sellIn).isEqualTo(6);
         assertThat(normalItem.quality).isEqualTo(6);
@@ -43,7 +43,7 @@ class GildedRoseTest {
         Item normalItem = new Item("foo", 0, quality);
         GildedRose gildedRose = new GildedRose(new Item[]{normalItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(normalItem.quality).isEqualTo(quality - 2);
     }
@@ -53,7 +53,7 @@ class GildedRoseTest {
         Item normalItem = new Item("foo", 0, 0);
         GildedRose gildedRose = new GildedRose(new Item[]{normalItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(normalItem.quality).isGreaterThanOrEqualTo(0);
     }
@@ -64,7 +64,7 @@ class GildedRoseTest {
         Item normalItem = new Item("foo", -1, quality);
         GildedRose gildedRose = new GildedRose(new Item[]{normalItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(normalItem.quality).isEqualTo(quality - 2);
     }
@@ -74,7 +74,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, 7, 10);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.sellIn).isEqualTo(6);
         assertThat(brie.quality).isEqualTo(11);
@@ -85,7 +85,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, 7, 50);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.quality).isEqualTo(50);
     }
@@ -95,7 +95,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, -1, 30);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.quality).isEqualTo(32);
     }
@@ -105,7 +105,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, 0, 50);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.quality).isEqualTo(50);
     }
@@ -115,7 +115,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, 0, 49);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.quality).isEqualTo(50);
     }
@@ -125,7 +125,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, -1, 30);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.quality).isEqualTo(32);
     }
@@ -135,7 +135,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, -1, 49);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.quality).isEqualTo(50);
     }
@@ -145,7 +145,7 @@ class GildedRoseTest {
         Item brie = new Item(agedBrie, -1, 50);
         GildedRose gildedRose = new GildedRose(new Item[]{brie});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(brie.quality).isEqualTo(50);
     }
@@ -155,7 +155,7 @@ class GildedRoseTest {
         Item sulfurasItem = new Item(sulfuras, 7, 80);
         GildedRose gildedRose = new GildedRose(new Item[]{sulfurasItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(sulfurasItem.quality).isEqualTo(80);
         assertThat(sulfurasItem.sellIn).isEqualTo(7);
@@ -166,7 +166,7 @@ class GildedRoseTest {
         Item sulfurasItem = new Item(sulfuras, 0, 80);
         GildedRose gildedRose = new GildedRose(new Item[]{sulfurasItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(sulfurasItem.quality).isEqualTo(80);
         assertThat(sulfurasItem.sellIn).isEqualTo(0);
@@ -177,7 +177,7 @@ class GildedRoseTest {
         Item sulfurasItem = new Item(sulfuras, -1, 80);
         GildedRose gildedRose = new GildedRose(new Item[]{sulfurasItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(sulfurasItem.quality).isEqualTo(80);
         assertThat(sulfurasItem.sellIn).isEqualTo(-1);
@@ -188,7 +188,7 @@ class GildedRoseTest {
         Item backstageItem = new Item(backstage, 12, 20);
         GildedRose gildedRose = new GildedRose(new Item[]{backstageItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(backstageItem.quality).isEqualTo(21);
         assertThat(backstageItem.sellIn).isEqualTo(11);
@@ -199,7 +199,7 @@ class GildedRoseTest {
         Item backstageItem = new Item(backstage, 12, 50);
         GildedRose gildedRose = new GildedRose(new Item[]{backstageItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(backstageItem.quality).isEqualTo(50);
         assertThat(backstageItem.sellIn).isEqualTo(11);
@@ -210,7 +210,7 @@ class GildedRoseTest {
         Item backstageItem = new Item(backstage, 10, 20);
         GildedRose gildedRose = new GildedRose(new Item[]{backstageItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(backstageItem.quality).isEqualTo(22);
         assertThat(backstageItem.sellIn).isEqualTo(9);
@@ -221,7 +221,7 @@ class GildedRoseTest {
         Item backstageItem = new Item(backstage, 10, 49);
         GildedRose gildedRose = new GildedRose(new Item[]{backstageItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(backstageItem.quality).isEqualTo(50);
         assertThat(backstageItem.sellIn).isEqualTo(9);
@@ -232,7 +232,7 @@ class GildedRoseTest {
         Item backstageItem = new Item(backstage, 5, 20);
         GildedRose gildedRose = new GildedRose(new Item[]{backstageItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(backstageItem.quality).isEqualTo(23);
         assertThat(backstageItem.sellIn).isEqualTo(4);
@@ -243,7 +243,7 @@ class GildedRoseTest {
         Item backstageItem = new Item(backstage, 5, 49);
         GildedRose gildedRose = new GildedRose(new Item[]{backstageItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(backstageItem.quality).isEqualTo(50);
         assertThat(backstageItem.sellIn).isEqualTo(4);
@@ -254,7 +254,7 @@ class GildedRoseTest {
         Item backstageItem = new Item(backstage, -1, 49);
         GildedRose gildedRose = new GildedRose(new Item[]{backstageItem});
 
-        gildedRose.updateQuality();
+        gildedRose.updateItem();
 
         assertThat(backstageItem.quality).isEqualTo(0);
         assertThat(backstageItem.sellIn).isEqualTo(-2);
